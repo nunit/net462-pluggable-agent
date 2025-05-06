@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>NUnit.Extension.Net462PluggableAgent</id>
+    <version>0.0.0</version>
+    <title>NUnit Extension - Net 8.0 Pluggable Agent</title>
+    <authors>Charlie Poole</authors>
+    <owners>Charlie Poole</owners>
+    <copyright>Copyright (c) 2021-2025 Charlie Poole</copyright>
+    <projectUrl>http://nunit.org</projectUrl>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<repository type="git" url="https://github.com/NUnit/net462-pluggable-agent"/>
+	<iconUrl>https://cdn.rawgit.com/nunit/resources/master/images/icon/nunit_256.png</iconUrl>
+	<icon>nunit_256.png</icon>
+	<language>en-US</language>
+    <tags>nunit gui runner agent net40</tags>
+    <summary>NUnit Engine extension for running tests under .NET 8.0.</summary>
+    <description>This extension allow the NUnit engine to run tests under .NET 8.0.</description>
+  </metadata>
+  <files>
+	<file src="../../LICENSE.txt" />
+    <file src="../../README.md" />
+	<file src="../../nunit_256.png" />
+    <file src="../../bin/Release/nunit-agent-launcher-net462.dll" target="tools" />
+    <file src="../../bin/Release/nunit.engine.api.dll" target="tools" />
+    <file src="../../bin/Release/nunit.agent.core.dll" target="tools" />
+	<file src="../../bin/Release/agent/nunit-agent-net462.exe" target="tools/agent" />
+	<file src="../../bin/Release/agent/nunit.engine.api.dll" target="tools/agent" />
+	<file src="../../bin/Release/agent/nunit.common.dll" target="tools/agent" />
+	<file src="../../bin/Release/agent/nunit.extensibility.api.dll" target="tools/agent" />
+	<file src="../../bin/Release/agent/nunit.extensibility.dll" target="tools/agent" />
+	<file src="../../bin/Release/agent/TestCentric.Metadata.dll" target="tools/agent" />
+	<file src="../../bin/Release/agent/nunit.agent.core.dll" target="tools/agent" />
+  </files>
+</package>

@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-net462", "src\agent\nunit-agent-net462.csproj", "{C47022F4-3023-A4CB-88F2-09F151D6B712}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-launcher-net462", "src\launcher\nunit-agent-launcher-net462.csproj", "{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-launcher-net462.tests", "src\tests\nunit-agent-launcher-net462.tests.csproj", "{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build.cake = build.cake
+		GitReleaseManager.yaml = GitReleaseManager.yaml
+		GitVersion.yml = GitVersion.yml
+		LICENSE.txt = LICENSE.txt
+		nunit_256.png = nunit_256.png
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{34216BD6-51BE-44BE-9E0D-503ACB44B54C}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Net462PluggableAgent.nuspec = nuget\Net462PluggableAgent.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "choco", "choco", "{D16E9CFA-FB9E-4307-AECC-E8C2EE32B6E0}"
+	ProjectSection(SolutionItems) = preProject
+		choco\net80-pluggable-agent.nuspec = choco\net80-pluggable-agent.nuspec
+		choco\VERIFICATION.txt = choco\VERIFICATION.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-assembly", "src\testdata\mock-assembly\mock-assembly.csproj", "{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows-test", "src\testdata\windows-test\windows-test.csproj", "{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{E11FCF30-1613-412A-AD1E-649327587CDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{D4E377B6-FF29-4EB6-B135-FCCD3B84F35C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Net462PluggableAgent.yml = .github\workflows\Net462PluggableAgent.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{34216BD6-51BE-44BE-9E0D-503ACB44B54C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D16E9CFA-FB9E-4307-AECC-E8C2EE32B6E0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E11FCF30-1613-412A-AD1E-649327587CDA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D4E377B6-FF29-4EB6-B135-FCCD3B84F35C} = {E11FCF30-1613-412A-AD1E-649327587CDA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA6FF2D7-F41B-4AF0-BAF9-A5839FEDFFBA}
+	EndGlobalSection
+EndGlobal

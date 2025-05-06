@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DotNetCliTool>
+  <Commands>
+    <Command Name="nunit-agent-net80" EntryPoint="nunit-agent-net80.dll" Runner="dotnet" />
+  </Commands>
+</DotNetCliTool>
