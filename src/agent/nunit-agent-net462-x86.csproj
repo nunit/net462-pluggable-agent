@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>NUnit.Engine.Agents</RootNamespace>
+        <TargetFrameworks>net462</TargetFrameworks>
+        <OutputPath>..\..\bin\$(Configuration)\agent</OutputPath>
+	    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	    <ApplicationManifest>app.manifest</ApplicationManifest>
+        <GenerateSupportedRuntime>false</GenerateSupportedRuntime>
+	    <SignAssembly>true</SignAssembly>
+	    <AssemblyOriginatorKeyFile>..\nunit.snk</AssemblyOriginatorKeyFile>
+		<PlatformTarget>X86</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <AssemblyTitle>NUnit Agent ($(TargetFramework))</AssemblyTitle>
+        <Description>Agent used to run tests out of process</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\nunit_256.png">
+            <Link>nunit_256.png</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NUnit.Agent.Core" Version="4.0.0-alpha.39" />
+        <PackageReference Include="NUnit.Engine.Api" Version="4.0.0-alpha.39" />
+    </ItemGroup>
+  
+</Project>

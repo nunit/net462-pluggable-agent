@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+		<RootNamespace>NUnit.TestData</RootNamespace>
+		<TargetFrameworks>net462</TargetFrameworks>
+		<OutputPath>..\..\..\bin\$(Configuration)\testdata\</OutputPath>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\nunit.snk</AssemblyOriginatorKeyFile>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+		<PlatformTarget>X86</PlatformTarget>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net20'">
+		<PackageReference Include="NUnit" Version="3.11.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net35'">
+		<PackageReference Include="NUnit" Version="3.14.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+		<PackageReference Include="NUnit" Version="4.1.0" />
+	</ItemGroup>
+
+</Project>

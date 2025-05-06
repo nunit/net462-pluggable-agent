@@ -1,0 +1,13 @@
+<!-- Top level Directory.Build.props -->
+<Project>
+
+    <PropertyGroup>
+        <!-- Compile and Build Settings -->
+        <LangVersion>12</LangVersion>
+        <Features>strict</Features>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <AnalysisMode>Minimum</AnalysisMode>
+    </PropertyGroup>
+
+</Project>

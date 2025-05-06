@@ -1,0 +1,101 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-net462", "src\agent\nunit-agent-net462.csproj", "{C47022F4-3023-A4CB-88F2-09F151D6B712}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-launcher-net462", "src\launcher\nunit-agent-launcher-net462.csproj", "{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-launcher-net462.tests", "src\tests\nunit-agent-launcher-net462.tests.csproj", "{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-assembly", "src\testdata\mock-assembly\mock-assembly.csproj", "{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows-test", "src\testdata\windows-test\windows-test.csproj", "{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build = build
+		build.cake = build.cake
+		build.cmd = build.cmd
+		build.ps1 = build.ps1
+		build.sh = build.sh
+		GitReleaseManager.yaml = GitReleaseManager.yaml
+		GitVersion.yml = GitVersion.yml
+		LICENSE.txt = LICENSE.txt
+		NuGet.config = NuGet.config
+		nunit_256.png = nunit_256.png
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{7C2AF425-8044-4BD7-A50D-6ABCC647A53E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Net462PluggableAgent.yml = .github\workflows\Net462PluggableAgent.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "choco", "choco", "{198932EC-C387-43B9-B0D1-5B0A5E7E9A39}"
+	ProjectSection(SolutionItems) = preProject
+		choco\net462-pluggable-agent.nuspec = choco\net462-pluggable-agent.nuspec
+		choco\VERIFICATION.txt = choco\VERIFICATION.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{FF097985-75B6-43D1-B3E6-6FC409FB49D0}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Net462PluggableAgent.nuspec = nuget\Net462PluggableAgent.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mock-assembly-x86", "src\testdata\mock-assembly\mock-assembly-x86.csproj", "{4713851C-F835-8934-A444-DA50E7B19160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nunit-agent-net462-x86", "src\agent\nunit-agent-net462-x86.csproj", "{F587F9F4-61C5-5665-158E-B447B58B3694}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47022F4-3023-A4CB-88F2-09F151D6B712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A22694-0BFD-A1F0-4A90-6C6B6A26CCEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDBCDE75-C8A2-DDB4-BCE9-E6D6DF6E04C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4743D98D-4855-0EDB-FFE8-CEA73CFC1C33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD39BD8-CB9E-C5C8-AB0C-B2534B41A9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4713851C-F835-8934-A444-DA50E7B19160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4713851C-F835-8934-A444-DA50E7B19160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4713851C-F835-8934-A444-DA50E7B19160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4713851C-F835-8934-A444-DA50E7B19160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F587F9F4-61C5-5665-158E-B447B58B3694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F587F9F4-61C5-5665-158E-B447B58B3694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F587F9F4-61C5-5665-158E-B447B58B3694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F587F9F4-61C5-5665-158E-B447B58B3694}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{7C2AF425-8044-4BD7-A50D-6ABCC647A53E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{198932EC-C387-43B9-B0D1-5B0A5E7E9A39} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{FF097985-75B6-43D1-B3E6-6FC409FB49D0} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA6FF2D7-F41B-4AF0-BAF9-A5839FEDFFBA}
+	EndGlobalSection
+EndGlobal
