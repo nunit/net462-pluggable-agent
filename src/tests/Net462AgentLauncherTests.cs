@@ -72,8 +72,8 @@ namespace NUnit.Engine.Agents
         [TestCaseSource(nameof(RUNTIMES))]
         public void CanCreateAgent(string runtime)
         {
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[RUN_AS_X86] = false;
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.RunAsX86.WithValue(false));
 
             bool supported = SUPPORTED.Contains(runtime);
             Assert.That(_launcher.CanCreateAgent(_package), Is.EqualTo(supported));
@@ -82,8 +82,8 @@ namespace NUnit.Engine.Agents
         [TestCaseSource(nameof(RUNTIMES))]
         public void CanCreateX86Agent(string runtime)
         {
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[RUN_AS_X86] = true;
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.RunAsX86.WithValue(true));
 
             bool supported = SUPPORTED.Contains(runtime);
             Assert.That(_launcher.CanCreateAgent(_package), Is.EqualTo(supported));
@@ -92,8 +92,8 @@ namespace NUnit.Engine.Agents
         [TestCaseSource(nameof(RUNTIMES))]
         public void CreateAgent(string runtime)
         {
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[RUN_AS_X86] = false;
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.RunAsX86.WithValue(false));
 
             if (SUPPORTED.Contains(runtime))
             {
@@ -118,8 +118,8 @@ namespace NUnit.Engine.Agents
         [TestCaseSource(nameof(RUNTIMES))]
         public void CreateX86Process(string runtime)
         {
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[RUN_AS_X86] = true;
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.RunAsX86.WithValue(true));
 
             if (SUPPORTED.Contains(runtime))
             {
@@ -155,8 +155,8 @@ namespace NUnit.Engine.Agents
         public void DebugAgentSetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[DEBUG_AGENT] = true;
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.DebugAgent.WithValue(true));
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--debug-agent"));
         }
@@ -165,8 +165,8 @@ namespace NUnit.Engine.Agents
         public void TraceLevelSetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[TRACE_LEVEL] = "Debug";
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.InternalTraceLevel.WithValue("Debug"));
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--trace=Debug"));
         }
@@ -175,8 +175,8 @@ namespace NUnit.Engine.Agents
         public void WorkDirectorySetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[WORK_DIRECTORY] = "WORKDIRECTORY";
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.WorkDirectory.WithValue("WORKDIRECTORY"));
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--work=WORKDIRECTORY"));
         }
@@ -185,8 +185,8 @@ namespace NUnit.Engine.Agents
         public void LoadUserProfileSetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[EnginePackageSettings.TargetFrameworkName] = runtime;
-            _package.Settings[LOAD_USER_PROFILE] = true;
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
+            _package.AddSetting(SettingDefinitions.LoadUserProfile.WithValue(true));
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
             Assert.That(agentProcess.StartInfo.LoadUserProfile, Is.True);
         }
