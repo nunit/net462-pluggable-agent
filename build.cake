@@ -82,6 +82,68 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
     tests: PackageTests));
 
 //////////////////////////////////////////////////////////////////////
+// RECOVER FROM RELEASE ERRORS
+//////////////////////////////////////////////////////////////////////
+
+Task("PublishToNuGet")
+    .Description("""
+	Publishes packages to NuGet for an alpha, beta, rc or final release. If not,
+	or if the --nopush option was used, a message is displayed.
+	""")
+    .Does(() =>
+    {
+        if (!BuildSettings.ShouldPublishToNuGet)
+            Information("Nothing to publish to NuGet from this run.");
+        else if (CommandLineOptions.NoPush)
+            Information("NoPush option suppressing publication to NuGet");
+        else
+            foreach (var package in BuildSettings.Packages)
+            {
+                var packageName = $"{package.PackageId}.{BuildSettings.PackageVersion}.nupkg";
+                var packagePath = BuildSettings.PackageDirectory + packageName;
+                try
+                {
+                    if (package.PackageType == PackageType.NuGet)
+                        NuGetPush(packagePath, new NuGetPushSettings() { ApiKey = BuildSettings.NuGetApiKey, Source = BuildSettings.NuGetPushUrl });
+                }
+                catch (Exception ex)
+                {
+                    Error(ex.Message);
+                    throw;
+                }
+            }
+    });
+
+Task("PublishToChocolatey")
+    .Description("""
+	Publishes packages to Chocolatey for an alpha, beta, rc or final release.
+	If not, or if the --nopush option was used, a message is displayed.
+	""")
+    .Does(() =>
+    {
+        if (!BuildSettings.ShouldPublishToChocolatey)
+            Information("Nothing to publish to Chocolatey from this run.");
+        else if (CommandLineOptions.NoPush)
+            Information("NoPush option suppressing publication to Chocolatey");
+        else
+            foreach (var package in BuildSettings.Packages)
+            {
+                var packageName = $"{package.PackageId}.{BuildSettings.PackageVersion}.nupkg";
+                var packagePath = BuildSettings.PackageDirectory + packageName;
+                try
+                {
+                    if (package.PackageType == PackageType.Chocolatey)
+                        ChocolateyPush(packagePath, new ChocolateyPushSettings() { ApiKey = BuildSettings.ChocolateyApiKey, Source = BuildSettings.ChocolateyPushUrl });
+                }
+                catch (Exception ex)
+                {
+                    Error(ex.Message);
+                    throw;
+                }
+            }
+    });
+
+//////////////////////////////////////////////////////////////////////
 // EXECUTION
 //////////////////////////////////////////////////////////////////////
 
