@@ -25,7 +25,6 @@
 	<file src="../../nunit_256.png" />
     <file src="../../bin/Release/nunit-agent-launcher-net462.dll" target="tools" />
     <file src="../../bin/Release/nunit.engine.api.dll" target="tools" />
-    <file src="../../bin/Release/nunit.agent.core.dll" target="tools" />
 	<file src="../../bin/Release/agent/nunit-agent-net462.exe" target="tools/agent" />
 	<file src="../../bin/Release/agent/nunit-agent-net462-x86.exe" target="tools/agent" />
 	<file src="../../bin/Release/agent/nunit.engine.api.dll" target="tools/agent" />

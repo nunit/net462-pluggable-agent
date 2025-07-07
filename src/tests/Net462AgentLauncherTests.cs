@@ -21,8 +21,8 @@ namespace NUnit.Engine.Agents
         private static string TESTS_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "tests");
 
         // Constants used for settings
-        private const string NETFX = FrameworkIdentifiers.NetFramework;
-        private const string NETCORE = FrameworkIdentifiers.NetCoreApp;
+        private const string NETFX = ".NETFramework";
+        private const string NETCORE = ".NetCoreApp";
         private const string NET20 = $"{NETFX},Version=v2.0";
         private const string NET30 = $"{NETFX},Version=v3.0";
         private const string NET35 = $"{NETFX},Version=v3.5";
