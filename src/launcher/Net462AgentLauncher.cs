@@ -14,6 +14,8 @@ using NUnit.Extensibility;
 namespace NUnit.Engine.Agents
 {
     [Extension(Description = "Pluggable agent running tests under .NET 4.6.2", EngineVersion = "4.0.0")]
+    [ExtensionProperty("AgentType", "LocalProcess")]
+    [ExtensionProperty("TargetFramework", ".NETFramework,Version=4.6.2")]
     public class Net462AgentLauncher : IAgentLauncher
     {
         private static readonly string LAUNCHER_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -21,13 +23,17 @@ namespace NUnit.Engine.Agents
         private const string RUNTIME_IDENTIFIER = ".NETFramework";
         private static readonly Version RUNTIME_VERSION = new Version(4, 6, 2);
         private static readonly FrameworkName TARGET_FRAMEWORK = new FrameworkName(RUNTIME_IDENTIFIER, RUNTIME_VERSION);
+        
         public string AgentName => "Net462Agent";
         public TestAgentType AgentType => TestAgentType.LocalProcess;
 
         private string AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462.exe");
         private string X86AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462-x86.exe");
 
-        public TestAgentInfo AgentInfo => new TestAgentInfo(AgentName, AgentType, TARGET_FRAMEWORK);
+        public TestAgentInfo AgentInfo => new TestAgentInfo(
+            GetType().Name,
+            TestAgentType.LocalProcess,
+            TARGET_FRAMEWORK);
 
         public bool CanCreateAgent(TestPackage package)
         {
