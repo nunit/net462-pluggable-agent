@@ -4,10 +4,8 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Diagnostics;
-using System.Runtime.Versioning;
 using NUnit.Common;
 using NUnit.Framework;
-using System.Drawing.Text;
 
 namespace NUnit.Engine.Agents
 {
