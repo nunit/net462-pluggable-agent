@@ -1,7 +1,7 @@
 // Load the recipe
-#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.3
+#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.2
 // Comment out above line and uncomment below for local tests of recipe changes
-//#load ../NUnit.Cake.Recipe/recipe/*.cake
+//#load ../NUnit.Cake.Recipe/src/NUnit.Cake.Recipe/content/*.cake
 
 BuildSettings.Initialize
 (
@@ -51,6 +51,7 @@ var PackageTests = new PackageTest[]
 BuildSettings.Packages.Add(new NuGetPackage(
     id: "NUnit.Extension.Net462PluggableAgent",
     source: BuildSettings.NuGetDirectory + "Net462PluggableAgent.nuspec",
+    basePath: BuildSettings.OutputDirectory,
     checks: new PackageCheck[]
     {
         HasFiles("LICENSE.txt", "README.md", "nunit_256.png"),

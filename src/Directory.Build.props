@@ -9,8 +9,10 @@
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <AnalysisMode>Minimum</AnalysisMode>
 		<!-- Common Package Versions -->
-		<NUnitEngineApiVersion>4.0.0-beta.2</NUnitEngineApiVersion>
-		<NUnitAgentCoreVersion>4.0.0-beta.2</NUnitAgentCoreVersion>
+		<NUnitAgentCoreVersion>4.0.0-beta.4</NUnitAgentCoreVersion>
+		<NUnitEngineApiVersion>4.0.0-beta.6</NUnitEngineApiVersion>
+		<NUnitExtensibilityVersion>4.0.0-beta.3</NUnitExtensibilityVersion>
+		<NUnitFrameworkVersion>4.1.0</NUnitFrameworkVersion>
 	</PropertyGroup>
 
 </Project>
