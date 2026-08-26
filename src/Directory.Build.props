@@ -10,8 +10,8 @@
         <AnalysisMode>Minimum</AnalysisMode>
 		<!-- Common Package Versions -->
 		<NUnitAgentCoreVersion>4.0.0-beta.5</NUnitAgentCoreVersion>
-		<NUnitEngineApiVersion>4.0.0-beta.7</NUnitEngineApiVersion>
-		<NUnitExtensibilityVersion>4.0.0-beta.3</NUnitExtensibilityVersion>
+		<NUnitEngineApiVersion>4.0.0-beta.8.1</NUnitEngineApiVersion>
+		<NUnitExtensibilityVersion>4.0.0-beta.4.1</NUnitExtensibilityVersion>
 		<NUnitFrameworkVersion>4.1.0</NUnitFrameworkVersion>
 	</PropertyGroup>
 

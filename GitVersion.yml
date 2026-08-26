@@ -1,9 +1,0 @@
-next-version: 4.1.1
-mode: ContinuousDelivery
-branches:
-  main:
-    label: alpha
-  release:
-    label: pre
-  pull-request:
-    label: pr
