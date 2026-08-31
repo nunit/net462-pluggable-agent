@@ -10,16 +10,8 @@
 		<PlatformTarget>X86</PlatformTarget>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net20'">
-		<PackageReference Include="NUnit" Version="3.11.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net35'">
-		<PackageReference Include="NUnit" Version="3.14.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-		<PackageReference Include="NUnit" Version="4.1.0" />
+	<ItemGroup>
+		<PackageReference Include="NUnit" />
 	</ItemGroup>
 
 </Project>

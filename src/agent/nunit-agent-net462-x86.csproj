@@ -25,8 +25,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="NUnit.Agent.Core" Version="$(NUnitAgentCoreVersion)" />
-        <PackageReference Include="NUnit.Engine.Api" Version="$(NUnitEngineApiVersion)" />
+        <PackageReference Include="NUnit.Agent.Core" />
+        <PackageReference Include="NUnit.Engine.Api" />
     </ItemGroup>
   
 </Project>

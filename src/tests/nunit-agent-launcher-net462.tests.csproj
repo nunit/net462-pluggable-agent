@@ -21,9 +21,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NUnit" Version="$(NUnitFrameworkVersion)" />
-		<PackageReference Include="NUnitLite" Version="$(NUnitFrameworkVersion)" />
-		<PackageReference Include="NUnit.Engine.Api" Version="$(NUnitEngineApiVersion)" />
+		<PackageReference Include="NUnit" />
+		<PackageReference Include="NUnitLite" />
+		<PackageReference Include="NUnit.Engine.Api" />
 	</ItemGroup>
 
 	<ItemGroup>

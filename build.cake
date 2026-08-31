@@ -1,5 +1,5 @@
 // Load the recipe
-#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.2
+#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.4.12
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../NUnit.Cake.Recipe/src/NUnit.Cake.Recipe/content/*.cake
 
@@ -7,7 +7,7 @@ BuildSettings.Initialize
 (
     context: Context,
     title: "Net462PluggableAgent",
-    solutionFile: "net462-pluggable-agent.sln",
+    solutionFile: "net462-pluggable-agent.slnx",
     unitTests: "**/*.tests.exe",
     githubOwner: "NUnit",
     githubRepository: "net462-pluggable-agent",

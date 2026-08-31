@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="build" />
+    <File Path="build.cake" />
+    <File Path="build.cmd" />
+    <File Path="build.ps1" />
+    <File Path="build.sh" />
+    <File Path="GitReleaseManager.yaml" />
+    <File Path="LICENSE.txt" />
+    <File Path="NuGet.config" />
+    <File Path="nunit_256.png" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/.config/">
+    <File Path=".config/dotnet-tools.json" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/" />
+  <Folder Name="/Solution Items/.github/workflows/">
+    <File Path=".github/workflows/Net462PluggableAgent.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/choco/">
+    <File Path="choco/net462-pluggable-agent.nuspec" />
+    <File Path="choco/VERIFICATION.txt" />
+  </Folder>
+  <Folder Name="/Solution Items/nuget/">
+    <File Path="nuget/Net462PluggableAgent.nuspec" />
+  </Folder>
+  <Project Path="src/agent/nunit-agent-net462-x86.csproj" />
+  <Project Path="src/agent/nunit-agent-net462.csproj" />
+  <Project Path="src/launcher/nunit-agent-launcher-net462.csproj" />
+  <Project Path="src/testdata/mock-assembly/mock-assembly-x86.csproj" />
+  <Project Path="src/testdata/mock-assembly/mock-assembly.csproj" />
+  <Project Path="src/testdata/windows-test/windows-test.csproj" />
+  <Project Path="src/tests/nunit-agent-launcher-net462.tests.csproj" />
+</Solution>

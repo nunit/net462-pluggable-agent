@@ -101,7 +101,8 @@ namespace NUnit.Engine.Agents
             }
             else
             {
-                Assert.That(() => _launcher.CreateAgent(AGENTID, AGENCY_URL, _package), Throws.ArgumentException);
+                var action = () => _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
+                Assert.That(action, Throws.ArgumentException);
             }
         }
 
@@ -128,7 +129,8 @@ namespace NUnit.Engine.Agents
             }
             else
             {
-                Assert.That(() => _launcher.CreateAgent(AGENTID, AGENCY_URL, _package), Throws.ArgumentException);
+                var action = () => _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
+                Assert.That(action, Throws.ArgumentException);
             }
         }
 
@@ -144,7 +146,7 @@ namespace NUnit.Engine.Agents
             Assert.That(startInfo.WorkingDirectory, Is.EqualTo(Environment.CurrentDirectory));
 
             var arguments = startInfo.Arguments;
-            Assert.That(arguments, Does.Not.Contain("--trace="));
+            Assert.That(arguments, Does.Contain("--trace=Warning"));
             Assert.That(arguments, Does.Not.Contain("--debug-agent"));
             Assert.That(arguments, Does.Not.Contain("--work="));
         }
@@ -205,7 +207,8 @@ namespace NUnit.Engine.Agents
             };
 
             Console.WriteLine("Launching agent for direct execution");
-            Assert.That(() => agentProcess.Start(), Throws.Nothing);
+            var action = () => agentProcess.Start();
+            Assert.That(action, Throws.Nothing);
             agentProcess.BeginOutputReadLine();
             Assert.That(agentProcess.WaitForExit(5000), "Agent failed to terminate");
             Assert.That(agentProcess.ExitCode, Is.EqualTo(0));
