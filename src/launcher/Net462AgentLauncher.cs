@@ -26,8 +26,8 @@ namespace NUnit.Engine.Agents
         public static string AgentName => "Net462Agent";
         public static TestAgentType AgentType => TestAgentType.LocalProcess;
 
-        private static string AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462.exe");
-        private static string X86AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462-x86.exe");
+        private static string AgentPath => Path.Combine(LAUNCHER_DIR, "../agent/nunit-agent-net462.exe");
+        private static string X86AgentPath => Path.Combine(LAUNCHER_DIR, "../agent/nunit-agent-net462-x86.exe");
 
         public TestAgentInfo AgentInfo => new TestAgentInfo(
             GetType().Name,

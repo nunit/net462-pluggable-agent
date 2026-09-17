@@ -15,8 +15,8 @@ namespace NUnit.Engine.Agents
         private const string AGENCY_URL = "tcp://127.0.0.1:1234/TestAgency";
         private const string AGENT_NAME = "nunit-agent-net462.exe";
         private const string X86_AGENT_NAME = "nunit-agent-net462-x86.exe";
-        private static string AGENT_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "agent");
-        private static string TESTS_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "tests");
+        private static string AGENT_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "../agent");
+        private static string TESTS_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "../tests");
 
         // Constants used for settings
         private const string NETFX = ".NETFramework";
