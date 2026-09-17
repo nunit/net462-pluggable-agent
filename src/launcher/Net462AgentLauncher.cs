@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Charlie Poole, Rob Prouse and Contributors. MIT License - see LICENSE.txt
 
-#if NETFRAMEWORK
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -24,11 +23,11 @@ namespace NUnit.Engine.Agents
         private static readonly Version RUNTIME_VERSION = new Version(4, 6, 2);
         private static readonly FrameworkName TARGET_FRAMEWORK = new FrameworkName(RUNTIME_IDENTIFIER, RUNTIME_VERSION);
         
-        public string AgentName => "Net462Agent";
-        public TestAgentType AgentType => TestAgentType.LocalProcess;
+        public static string AgentName => "Net462Agent";
+        public static TestAgentType AgentType => TestAgentType.LocalProcess;
 
-        private string AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462.exe");
-        private string X86AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462-x86.exe");
+        private static string AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462.exe");
+        private static string X86AgentPath => Path.Combine(LAUNCHER_DIR, "agent/nunit-agent-net462-x86.exe");
 
         public TestAgentInfo AgentInfo => new TestAgentInfo(
             GetType().Name,
@@ -65,7 +64,11 @@ namespace NUnit.Engine.Agents
             bool loadUserProfile = settings.GetValueOrDefault(SettingDefinitions.LoadUserProfile);
             string workDirectory = settings.GetValueOrDefault(SettingDefinitions.WorkDirectory);
 
+#if NETFRAMEWORK
             var sb = new StringBuilder($"--agentId={agentId} --agencyUrl={agencyUrl} --pid={Process.GetCurrentProcess().Id}");
+#else
+            var sb = new StringBuilder($"--agentId={agentId} --agencyUrl={agencyUrl} --pid={Environment.ProcessId}");
+#endif
 
             // Set options that need to be in effect before the package
             // is loaded by using the command line.
@@ -84,7 +87,8 @@ namespace NUnit.Engine.Agents
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
             startInfo.WorkingDirectory = Environment.CurrentDirectory;
-            startInfo.LoadUserProfile = loadUserProfile;
+            if (Platform.IsWindows)
+                startInfo.LoadUserProfile = loadUserProfile;
 
             startInfo.FileName = runAsX86 ? X86AgentPath : AgentPath;
             startInfo.Arguments = arguments;
@@ -93,4 +97,3 @@ namespace NUnit.Engine.Agents
         }
     }
 }
-#endif

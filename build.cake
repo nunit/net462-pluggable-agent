@@ -55,7 +55,9 @@ BuildSettings.Packages.Add(new NuGetPackage(
     checks: new PackageCheck[]
     {
         HasFiles("LICENSE.txt", "README.md", "nunit_256.png"),
-        HasDirectory("tools").WithFiles(
+        HasDirectory("tools/net462").WithFiles(
+            "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
+        HasDirectory("tools/net8.0").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/agent").WithFiles(
             "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll", 
@@ -73,7 +75,10 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
     checks: new PackageCheck[]
     {
         HasDirectory("tools").WithFiles(
-            "LICENSE.txt", "README.md", "nunit_256.png", "VERIFICATION.txt",
+            "LICENSE.txt", "README.md", "nunit_256.png", "VERIFICATION.txt"),
+        HasDirectory("tools/net462").WithFiles(
+            "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
+        HasDirectory("tools/net8.0").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/agent").WithFiles(
             "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll",

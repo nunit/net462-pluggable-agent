@@ -3,19 +3,15 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>NUnit.Engine.Agents</RootNamespace>
-		<TargetFramework>net462</TargetFramework>
+		<TargetFrameworks>net462;net8.0</TargetFrameworks>
 		<GenerateSupportedRuntime>false</GenerateSupportedRuntime>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
   
-	<ItemGroup>
-		<Reference Include="System.Runtime.Remoting" />
-	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\launcher\nunit-agent-launcher-net462.csproj" />
 	</ItemGroup>

@@ -106,7 +106,7 @@ namespace NUnit.Engine.Agents
             }
         }
 
-        private void CheckAgentPath(Process process, bool x86)
+        private static void CheckAgentPath(Process process, bool x86)
         {
             string agentName = x86 ? X86_AGENT_NAME : AGENT_NAME;
             string agentPath = Path.Combine(AGENT_DIR, agentName).Replace(ALT, SEP);
@@ -134,7 +134,7 @@ namespace NUnit.Engine.Agents
             }
         }
 
-        private void CheckStandardProcessSettings(Process process)
+        private static void CheckStandardProcessSettings(Process process)
         {
             Assert.That(process, Is.Not.Null);
             Assert.That(process.EnableRaisingEvents, Is.True, "EnableRaisingEvents");
@@ -142,7 +142,8 @@ namespace NUnit.Engine.Agents
             var startInfo = process.StartInfo;
             Assert.That(startInfo.UseShellExecute, Is.False, "UseShellExecute");
             Assert.That(startInfo.CreateNoWindow, Is.True, "CreateNoWindow");
-            Assert.That(startInfo.LoadUserProfile, Is.False, "LoadUserProfile");
+            if (Platform.IsWindows)
+                Assert.That(startInfo.LoadUserProfile, Is.False, "LoadUserProfile");
             Assert.That(startInfo.WorkingDirectory, Is.EqualTo(Environment.CurrentDirectory));
 
             var arguments = startInfo.Arguments;
@@ -181,14 +182,15 @@ namespace NUnit.Engine.Agents
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--work=WORKDIRECTORY"));
         }
 
-        [Test]
+        [Test, Platform("win")]
         public void LoadUserProfileSetting()
         {
             var runtime = SUPPORTED[0];
             _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime));
             _package.AddSetting(SettingDefinitions.LoadUserProfile.WithValue(true));
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
-            Assert.That(agentProcess.StartInfo.LoadUserProfile, Is.True);
+            if (Platform.IsWindows)
+                Assert.That(agentProcess.StartInfo.LoadUserProfile, Is.True);
         }
 
         //[Test]

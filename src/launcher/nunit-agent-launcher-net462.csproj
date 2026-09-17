@@ -2,10 +2,8 @@
 
 	<PropertyGroup>
 		<RootNamespace>NUnit.Engine.Agents</RootNamespace>
-		<TargetFramework>net462</TargetFramework>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<TargetFrameworks>net462;net8.0</TargetFrameworks>
 		<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\nunit.snk</AssemblyOriginatorKeyFile>
@@ -16,8 +14,4 @@
 		<PackageReference Include="NUnit.Extensibility.Api" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Reference Include="System.Runtime.Remoting" />
-	</ItemGroup>
-	
 </Project>
