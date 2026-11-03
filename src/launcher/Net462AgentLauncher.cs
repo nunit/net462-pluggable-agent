@@ -26,8 +26,26 @@ namespace NUnit.Engine.Agents
         public static string AgentName => "Net462Agent";
         public static TestAgentType AgentType => TestAgentType.LocalProcess;
 
-        private static string AgentPath => Path.Combine(LAUNCHER_DIR, "../agent/nunit-agent-net462.exe");
-        private static string X86AgentPath => Path.Combine(LAUNCHER_DIR, "../agent/nunit-agent-net462-x86.exe");
+        private static string AgentPath => Path.Combine(AgentDirectory, "nunit-agent-net462.exe");
+        private static string X86AgentPath => Path.Combine(AgentDirectory, "nunit-agent-net462-x86.exe");
+
+        /// <summary>
+        /// Gets the sibling agent directory without passing device-path syntax or
+        /// unresolved parent segments to the Framework executable's startup path.
+        /// </summary>
+        private static string AgentDirectory
+        {
+            get
+            {
+                string directory = Path.GetDirectoryName(LAUNCHER_DIR);
+                if (directory.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase))
+                    directory = directory.Remove(2, 6); // Preserve the leading UNC separator pair.
+                else if (directory.StartsWith(@"\\?\", StringComparison.Ordinal)
+                    && directory.Length > 5 && directory[5] == ':')
+                    directory = directory.Substring(4);
+                return Path.Combine(directory, "agent");
+            }
+        }
 
         public TestAgentInfo AgentInfo => new TestAgentInfo(
             GetType().Name,

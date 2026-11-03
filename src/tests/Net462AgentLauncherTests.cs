@@ -15,7 +15,7 @@ namespace NUnit.Engine.Agents
         private const string AGENCY_URL = "tcp://127.0.0.1:1234/TestAgency";
         private const string AGENT_NAME = "nunit-agent-net462.exe";
         private const string X86_AGENT_NAME = "nunit-agent-net462-x86.exe";
-        private static string AGENT_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "../agent");
+        private static string AGENT_DIR = Path.Combine(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory), "agent");
         private static string TESTS_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "../tests");
 
         // Constants used for settings
@@ -113,6 +113,49 @@ namespace NUnit.Engine.Agents
 
             Assert.That(process.StartInfo.FileName.Replace(ALT, SEP), Is.EqualTo(agentPath));
         }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void AgentPathDoesNotContainParentSegments(bool runAsX86)
+        {
+            _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(NET462), true);
+            _package.AddSetting(SettingDefinitions.RunAsX86.WithValue(runAsX86), true);
+
+            using var process = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
+
+            // Extended Windows paths do not resolve parent-directory segments.
+            Assert.That(process.StartInfo.FileName.Split(SEP, ALT), Does.Not.Contain(".."));
+        }
+
+#if NET6_0_OR_GREATER
+        [TestCase(false)]
+        [TestCase(true)]
+        [Platform("Win")]
+        public void DevicePathLauncherUsesOrdinaryExecutablePath(bool runAsX86)
+        {
+            var context = new System.Runtime.Loader.AssemblyLoadContext(null, isCollectible: true);
+            try
+            {
+                string assemblyPath = typeof(Net462AgentLauncher).Assembly.Location;
+                var assembly = context.LoadFromAssemblyPath(@"\\?\" + assemblyPath);
+                Assert.That(assembly.Location, Does.StartWith(@"\\?\"));
+                var type = assembly.GetType(typeof(Net462AgentLauncher).FullName);
+                var launcher = (NUnit.Engine.Extensibility.IAgentLauncher)Activator.CreateInstance(type);
+                _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(NET462), true);
+                _package.AddSetting(SettingDefinitions.RunAsX86.WithValue(runAsX86), true);
+
+                using var process = launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
+
+                string name = runAsX86 ? X86_AGENT_NAME : AGENT_NAME;
+                string expected = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(assemblyPath)), "agent", name);
+                Assert.That(process.StartInfo.FileName, Is.EqualTo(expected));
+            }
+            finally
+            {
+                context.Unload();
+            }
+        }
+#endif
 
         [TestCaseSource(nameof(RUNTIMES))]
         public void CreateX86Process(string runtime)
