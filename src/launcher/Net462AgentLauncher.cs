@@ -18,6 +18,9 @@ namespace NUnit.Engine.Agents
     public class Net462AgentLauncher : IAgentLauncher
     {
         private static readonly string LAUNCHER_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private static readonly string AGENT_DIR = GetAgentDirectory();
+        private static readonly string AGENT_PATH = Path.Combine(AGENT_DIR, "nunit-agent-net462.exe");
+        private static readonly string X86_AGENT_PATH = Path.Combine(AGENT_DIR, "nunit-agent-net462-x86.exe");
 
         private const string RUNTIME_IDENTIFIER = ".NETFramework";
         private static readonly Version RUNTIME_VERSION = new Version(4, 6, 2);
@@ -26,25 +29,19 @@ namespace NUnit.Engine.Agents
         public static string AgentName => "Net462Agent";
         public static TestAgentType AgentType => TestAgentType.LocalProcess;
 
-        private static string AgentPath => Path.Combine(AgentDirectory, "nunit-agent-net462.exe");
-        private static string X86AgentPath => Path.Combine(AgentDirectory, "nunit-agent-net462-x86.exe");
-
         /// <summary>
         /// Gets the sibling agent directory without passing device-path syntax or
         /// unresolved parent segments to the Framework executable's startup path.
         /// </summary>
-        private static string AgentDirectory
+        private static string GetAgentDirectory()
         {
-            get
-            {
-                string directory = Path.GetDirectoryName(LAUNCHER_DIR);
-                if (directory.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase))
-                    directory = directory.Remove(2, 6); // Preserve the leading UNC separator pair.
-                else if (directory.StartsWith(@"\\?\", StringComparison.Ordinal)
-                    && directory.Length > 5 && directory[5] == ':')
-                    directory = directory.Substring(4);
-                return Path.Combine(directory, "agent");
-            }
+            string directory = Path.GetDirectoryName(LAUNCHER_DIR);
+            if (directory.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase))
+                directory = directory.Remove(2, 6); // Preserve the leading UNC separator pair.
+            else if (directory.StartsWith(@"\\?\", StringComparison.Ordinal)
+                && directory.Length > 5 && directory[5] == ':')
+                directory = directory.Substring(4);
+            return Path.Combine(directory, "agent");
         }
 
         public TestAgentInfo AgentInfo => new TestAgentInfo(
@@ -108,7 +105,7 @@ namespace NUnit.Engine.Agents
             if (Platform.IsWindows)
                 startInfo.LoadUserProfile = loadUserProfile;
 
-            startInfo.FileName = runAsX86 ? X86AgentPath : AgentPath;
+            startInfo.FileName = runAsX86 ? X86_AGENT_PATH : AGENT_PATH;
             startInfo.Arguments = arguments;
 
             return process;
