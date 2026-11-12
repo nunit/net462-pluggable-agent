@@ -17,7 +17,7 @@ namespace NUnit.Engine.Agents
     [ExtensionProperty("TargetFramework", ".NETFramework,Version=4.6.2")]
     public class Net462AgentLauncher : IAgentLauncher
     {
-        private static readonly string LAUNCHER_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private static readonly string LAUNCHER_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
         private static readonly string AGENT_DIR = GetAgentDirectory();
         private static readonly string AGENT_PATH = Path.Combine(AGENT_DIR, "nunit-agent-net462.exe");
         private static readonly string X86_AGENT_PATH = Path.Combine(AGENT_DIR, "nunit-agent-net462-x86.exe");
@@ -35,13 +35,17 @@ namespace NUnit.Engine.Agents
         /// </summary>
         private static string GetAgentDirectory()
         {
-            string directory = Path.GetDirectoryName(LAUNCHER_DIR);
-            if (directory.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase))
-                directory = directory.Remove(2, 6); // Preserve the leading UNC separator pair.
-            else if (directory.StartsWith(@"\\?\", StringComparison.Ordinal)
-                && directory.Length > 5 && directory[5] == ':')
-                directory = directory.Substring(4);
-            return Path.Combine(directory, "agent");
+            string? directory = Path.GetDirectoryName(LAUNCHER_DIR);
+            if (directory is not null)
+            {
+                if (directory.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase))
+                    directory = directory.Remove(2, 6); // Preserve the leading UNC separator pair.
+                else if (directory.StartsWith(@"\\?\", StringComparison.Ordinal)
+                    && directory.Length > 5 && directory[5] == ':')
+                    directory = directory.Substring(4);
+                return Path.Combine(directory, "agent");
+            }
+            return "agent";
         }
 
         public TestAgentInfo AgentInfo => new TestAgentInfo(
@@ -75,7 +79,7 @@ namespace NUnit.Engine.Agents
             bool runAsX86 = settings.GetValueOrDefault(SettingDefinitions.RunAsX86);
             bool debugTests = settings.GetValueOrDefault(SettingDefinitions.DebugTests);
             bool debugAgent = settings.GetValueOrDefault(SettingDefinitions.DebugAgent);
-            string traceLevel = settings.GetValueOrDefault(SettingDefinitions.InternalTraceLevel);
+            string traceLevel = settings.GetValueOrDefault(SettingDefinitions.InternalTraceLevel) ?? "Warning";
             bool loadUserProfile = settings.GetValueOrDefault(SettingDefinitions.LoadUserProfile);
             string workDirectory = settings.GetValueOrDefault(SettingDefinitions.WorkDirectory);
 
@@ -87,8 +91,7 @@ namespace NUnit.Engine.Agents
 
             // Set options that need to be in effect before the package
             // is loaded by using the command line.
-            if (traceLevel != "Off")
-                sb.Append(" --trace=").EscapeProcessArgument(traceLevel);
+            sb.Append(" --trace=").EscapeProcessArgument(traceLevel);
             if (debugAgent)
                 sb.Append(" --debug-agent");
             if (debugTests)

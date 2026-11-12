@@ -1,5 +1,5 @@
 // Load the recipe
-#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.5
+#load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.5.9
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../NUnit.Cake.Recipe/src/NUnit.Cake.Recipe/content/*.cake
 
@@ -57,7 +57,7 @@ BuildSettings.Packages.Add(new NuGetPackage(
         HasFiles("LICENSE.txt", "README.md", "nunit_256.png"),
         HasDirectory("tools/net462").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
-        HasDirectory("tools/net8.0").WithFiles(
+        HasDirectory("tools/net10.0").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/agent").WithFiles(
             "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll", 
@@ -78,7 +78,7 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
             "LICENSE.txt", "README.md", "nunit_256.png", "VERIFICATION.txt"),
         HasDirectory("tools/net462").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
-        HasDirectory("tools/net8.0").WithFiles(
+        HasDirectory("tools/net10.0").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/agent").WithFiles(
             "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll",
