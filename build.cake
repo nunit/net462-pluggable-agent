@@ -1,7 +1,7 @@
 // Load the recipe
 #load nuget:?package=NUnit.Cake.Recipe&version=2.0.0-beta.5.9
 // Comment out above line and uncomment below for local tests of recipe changes
-//#load ../NUnit.Cake.Recipe/src/NUnit.Cake.Recipe/content/*.cake
+//#load ../NUnit.Cake.Recipe/recipe/*.cake
 
 BuildSettings.Initialize
 (
@@ -57,13 +57,13 @@ BuildSettings.Packages.Add(new NuGetPackage(
         HasFiles("LICENSE.txt", "README.md", "nunit_256.png"),
         // Lists the extension assemblies, including the agent exe, which a directory scan would miss.
         HasDirectory("tools").WithFile("nunit-agent-net462.addins"),
+        HasDirectory("tools/agent").WithFiles(
+            "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll", 
+            "nunit.extensibility.api.dll", "nunit.extensibility.dll", "nunit.agent.core.dll", "TestCentric.Metadata.dll"),
         HasDirectory("tools/net462").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/net10.0").WithFiles(
-            "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
-        HasDirectory("tools/agent").WithFiles(
-            "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll", 
-            "nunit.extensibility.api.dll", "nunit.extensibility.dll", "nunit.agent.core.dll", "TestCentric.Metadata.dll")
+            "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll")
     },
     //symbols: new PackageCheck[]
     testRunner: new AgentRunner(
@@ -78,13 +78,13 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
     {
         HasDirectory("tools").WithFiles(
             "LICENSE.txt", "README.md", "nunit_256.png", "VERIFICATION.txt", "nunit-agent-net462.addins"),
+        HasDirectory("tools/agent").WithFiles(
+            "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll",
+            "nunit.extensibility.api.dll", "nunit.extensibility.dll", "nunit.agent.core.dll", "TestCentric.Metadata.dll"),
         HasDirectory("tools/net462").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/net10.0").WithFiles(
-            "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
-        HasDirectory("tools/agent").WithFiles(
-            "nunit-agent-net462.exe", "nunit-agent-net462-x86.exe", "nunit.engine.api.dll", "nunit.common.dll",
-            "nunit.extensibility.api.dll", "nunit.extensibility.dll", "nunit.agent.core.dll", "TestCentric.Metadata.dll")
+            "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll")
     },
     testRunner: new AgentRunner(
         BuildSettings.ChocolateyTestDirectory + "nunit-extension-net462-pluggable-agent." + BuildSettings.PackageVersion + "/tools/agent/nunit-agent-net462.exe"),

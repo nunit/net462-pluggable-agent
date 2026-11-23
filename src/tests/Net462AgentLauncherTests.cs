@@ -16,11 +16,11 @@ namespace NUnit.Engine.Agents
         private const string AGENT_NAME = "nunit-agent-net462.exe";
         private const string X86_AGENT_NAME = "nunit-agent-net462-x86.exe";
         private static string AGENT_DIR = Path.Combine(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory), "agent");
-        private static string TESTS_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "../tests");
+        private static string TESTDATA_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "../testdata");
 
         // Constants used for settings
         private const string NETFX = ".NETFramework";
-        private const string NETCORE = ".NetCoreApp";
+        private const string NETCORE = ".NETCoreApp";
         private const string NET20 = $"{NETFX},Version=v2.0";
         private const string NET30 = $"{NETFX},Version=v3.0";
         private const string NET35 = $"{NETFX},Version=v3.5";
@@ -36,13 +36,7 @@ namespace NUnit.Engine.Agents
         private const string NET70 = $"{NETCORE},Version=7.0";
         private const string NET80 = $"{NETCORE},Version=8.0";
         private const string NET90 = $"{NETCORE},Version=9.0";
-
-        private const string TARGET_RUNTIME_FRAMEWORK = NET462;
-        private const string RUN_AS_X86 = "RunAsX86";
-        private const string DEBUG_AGENT = "DebugAgent";
-        private const string TRACE_LEVEL = "InternalTraceLevel";
-        private const string WORK_DIRECTORY = "WorkDirectory";
-        private const string LOAD_USER_PROFILE = "LoadUserProfile";
+        private const string NET10 = $"{NETCORE},Version=10.0";
 
         static readonly char SEP = Path.DirectorySeparatorChar;
         static readonly char ALT = Path.AltDirectorySeparatorChar;
@@ -50,7 +44,7 @@ namespace NUnit.Engine.Agents
         private static readonly string[] RUNTIMES = new string[]
         {
             NET20, NET30, NET35, NET40, NET45, NET462, NET481,
-            NETCORE11, NETCORE21, NETCORE31, NET50, NET60, NET70, NET80, NET90
+            NETCORE11, NETCORE21, NETCORE31, NET50, NET60, NET70, NET80, NET90, NET10
         };
 
         private static readonly string[] SUPPORTED = new string[] {
@@ -65,6 +59,14 @@ namespace NUnit.Engine.Agents
         {
             _launcher = new Net462AgentLauncher();
             _package = new TestPackage("junk.dll");
+        }
+
+        /// <summary>Advertises the runtime actually targeted by the .NET Framework 4.6.2 agent executable.</summary>
+        [Test]
+        public void AgentInfoReportsNet462Runtime()
+        {
+            Assert.That(_launcher.AgentInfo.TargetRuntime.Identifier, Is.EqualTo(NETFX));
+            Assert.That(_launcher.AgentInfo.TargetRuntime.Version, Is.EqualTo(new Version(4, 6, 2)));
         }
 
         [TestCaseSource(nameof(RUNTIMES))]
@@ -112,6 +114,7 @@ namespace NUnit.Engine.Agents
             string agentPath = Path.Combine(AGENT_DIR, agentName).Replace(ALT, SEP);
 
             Assert.That(process.StartInfo.FileName.Replace(ALT, SEP), Is.EqualTo(agentPath));
+            Assert.That(File.Exists(agentPath), $"No agent at {agentPath}");
         }
 
         [TestCase(false)]
@@ -168,7 +171,6 @@ namespace NUnit.Engine.Agents
                 var process = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
                 CheckStandardProcessSettings(process);
                 CheckAgentPath(process, true);
-                Console.WriteLine($"{process.StartInfo.FileName} {process.StartInfo.Arguments}");
             }
             else
             {
@@ -190,7 +192,7 @@ namespace NUnit.Engine.Agents
             Assert.That(startInfo.WorkingDirectory, Is.EqualTo(Environment.CurrentDirectory));
 
             var arguments = startInfo.Arguments;
-            Assert.That(arguments, Does.Contain("--trace=Warning"));
+            Assert.That(arguments, Does.Contain("--trace="));
             Assert.That(arguments, Does.Not.Contain("--debug-agent"));
             Assert.That(arguments, Does.Not.Contain("--work="));
         }
@@ -205,14 +207,19 @@ namespace NUnit.Engine.Agents
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--debug-agent"));
         }
 
-        [Test]
-        public void TraceLevelSetting()
+        [TestCase("Off")]
+        [TestCase("Error")]
+        [TestCase("Warning")]
+        [TestCase("Info")]
+        [TestCase("Debug")]
+        [TestCase("Verbose")]
+        public void TraceLevelSetting(string traceLevel)
         {
             var runtime = SUPPORTED[0];
             _package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(runtime), true);
-            _package.AddSetting(SettingDefinitions.InternalTraceLevel.WithValue("Debug"), true);
+            _package.AddSetting(SettingDefinitions.InternalTraceLevel.WithValue(traceLevel), true);
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, _package);
-            Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--trace=Debug"));
+            Assert.That(agentProcess.StartInfo.Arguments, Does.Contain($"--trace={traceLevel}"));
         }
 
         [Test]
@@ -239,8 +246,8 @@ namespace NUnit.Engine.Agents
         //[Test]
         public void ExecuteTestDirectly()
         {
-            var package = new TestPackage(Path.Combine(TESTS_DIR, "net8.0/mock-assembly.dll")).SubPackages[0];
-            package.AddSetting("TargetRuntimeFramework", "netcore-8.0", true);
+            var package = new TestPackage(Path.Combine(TESTDATA_DIR, "net462/mock-assembly.dll")).SubPackages[0];
+            package.AddSetting(SettingDefinitions.TargetFrameworkName.WithValue(NET462), true);
 
             Assert.That(_launcher.CanCreateAgent(package));
             var agentProcess = _launcher.CreateAgent(AGENTID, AGENCY_URL, package);

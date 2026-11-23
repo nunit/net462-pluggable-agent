@@ -27,22 +27,18 @@ jobs:
       - name: ⤵️ Checkout Source
         uses: actions/checkout@v4
         with:
-            fetch-depth: 0
+          fetch-depth: 0
 
       - name: 🛠️ Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            3.1.x
-            6.0.x
-            7.0.x
-            8.0.x
-            9.0.x
+            10.0.x
 
       - name: 🔧 Install dotnet tools
         run: dotnet tool restore
 
-      - name: 🍰 Run cake script
+      - name: 🍰 Build, Test, Package, and Publish to MyGet
         # If you need to get more verbose logging, add the following to the dotnet-cake call:  --verbosity=diagnostic
         run: dotnet cake --target=ContinuousIntegration --configuration=Release
 

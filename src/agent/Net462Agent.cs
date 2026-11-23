@@ -11,7 +11,7 @@ namespace NUnit.Agents
         public static void Main(string[] args)
         {
             log.Debug("Using nunit.agent.core version " +
-                typeof(NUnitAgent<Net462Agent>).Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version);
+                typeof(NUnitAgent<Net462Agent>).Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version);
             Execute(args);
         }
     }
