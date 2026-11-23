@@ -39,7 +39,7 @@
 	<file src="$BIN_DIR$net462/nunit-agent-launcher-net462.dll" target="tools/net462" />
 	<file src="$BIN_DIR$net462/nunit.engine.api.dll" target="tools/net462" />
 	  
-	<file src="$BIN_DIR$net8.0/nunit-agent-launcher-net462.dll" target="tools/net8.0" />
-	<file src="$BIN_DIR$net8.0/nunit.engine.api.dll" target="tools/net8.0" />
+	<file src="$BIN_DIR$net10.0/nunit-agent-launcher-net462.dll" target="tools/net10.0" />
+	<file src="$BIN_DIR$net10.0/nunit.engine.api.dll" target="tools/net10.0" />
   </files>
 </package>

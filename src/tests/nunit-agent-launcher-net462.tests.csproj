@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>NUnit.Engine.Agents</RootNamespace>
-		<TargetFrameworks>net462;net8.0</TargetFrameworks>
+		<TargetFrameworks>net462;net10.0</TargetFrameworks>
 		<GenerateSupportedRuntime>false</GenerateSupportedRuntime>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
@@ -14,6 +14,11 @@
   
 	<ItemGroup>
 		<ProjectReference Include="..\launcher\nunit-agent-launcher-net462.csproj" />
+	</ItemGroup>
+
+	<!-- The agent itself targets net462 only; its in-process class is tested there. -->
+	<ItemGroup Condition="'$(TargetFramework)'=='net462'">
+		<ProjectReference Include="..\agent\nunit-agent-net462.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

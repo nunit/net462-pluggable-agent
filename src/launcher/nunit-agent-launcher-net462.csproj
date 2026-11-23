@@ -2,11 +2,12 @@
 
 	<PropertyGroup>
 		<RootNamespace>NUnit.Engine.Agents</RootNamespace>
-		<TargetFrameworks>net462;net8.0</TargetFrameworks>
+		<TargetFrameworks>net462;net10.0</TargetFrameworks>
 		<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\nunit.snk</AssemblyOriginatorKeyFile>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
