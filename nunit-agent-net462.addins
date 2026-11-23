@@ -1,0 +1,6 @@
+# Extension assemblies in this package, relative to the tools directory.
+# Without this file, directory scanning finds only .dll files and would miss the agent exe,
+# which contains the in-process agent.
+net462/nunit-agent-launcher-net462.dll
+net10.0/nunit-agent-launcher-net462.dll
+agent/nunit-agent-net462.exe

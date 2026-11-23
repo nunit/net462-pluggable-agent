@@ -55,6 +55,8 @@ BuildSettings.Packages.Add(new NuGetPackage(
     checks: new PackageCheck[]
     {
         HasFiles("LICENSE.txt", "README.md", "nunit_256.png"),
+        // Lists the extension assemblies, including the agent exe, which a directory scan would miss.
+        HasDirectory("tools").WithFile("nunit-agent-net462.addins"),
         HasDirectory("tools/net462").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/net10.0").WithFiles(
@@ -75,7 +77,7 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
     checks: new PackageCheck[]
     {
         HasDirectory("tools").WithFiles(
-            "LICENSE.txt", "README.md", "nunit_256.png", "VERIFICATION.txt"),
+            "LICENSE.txt", "README.md", "nunit_256.png", "VERIFICATION.txt", "nunit-agent-net462.addins"),
         HasDirectory("tools/net462").WithFiles(
             "nunit-agent-launcher-net462.dll", "nunit.engine.api.dll"),
         HasDirectory("tools/net10.0").WithFiles(
