@@ -14,7 +14,7 @@ namespace NUnit.Engine.Agents
 {
     [Extension(Description = "Pluggable agent running tests under .NET 4.6.2", ExtensibilityVersion = "4.0.0")]
     [ExtensionProperty("AgentType", "LocalProcess")]
-    [ExtensionProperty("TargetFramework", ".NETFramework,Version=4.6.2")]
+    [ExtensionProperty("TargetFramework", ".NETFramework,Version=v4.6.2")]
     public class Net462AgentLauncher : IAgentLauncher
     {
         private static readonly string LAUNCHER_DIR = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
@@ -25,9 +25,6 @@ namespace NUnit.Engine.Agents
         private const string RUNTIME_IDENTIFIER = ".NETFramework";
         private static readonly Version RUNTIME_VERSION = new Version(4, 6, 2);
         private static readonly FrameworkName TARGET_FRAMEWORK = new FrameworkName(RUNTIME_IDENTIFIER, RUNTIME_VERSION);
-        
-        public static string AgentName => "Net462Agent";
-        public static TestAgentType AgentType => TestAgentType.LocalProcess;
 
         /// <summary>
         /// Gets the sibling agent directory without passing device-path syntax or
@@ -58,7 +55,6 @@ namespace NUnit.Engine.Agents
             // Get target runtime from package
             string runtimeSetting = package.Settings.GetValueOrDefault(SettingDefinitions.TargetFrameworkName);
             var targetRuntime = new FrameworkName(runtimeSetting);
-            bool runAsX86 = package.Settings.GetValueOrDefault(SettingDefinitions.RunAsX86);
 
             return targetRuntime.Identifier == RUNTIME_IDENTIFIER && targetRuntime.Version.Major <= RUNTIME_VERSION.Major;
         }

@@ -7,11 +7,11 @@
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\nunit.snk</AssemblyOriginatorKeyFile>
-		<Nullable>enable</Nullable>
+		<Nullable>Enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NUnit.Engine.api" />
+		<PackageReference Include="NUnit.Engine.Api" />
 		<PackageReference Include="NUnit.Extensibility.Api" />
 	</ItemGroup>
 

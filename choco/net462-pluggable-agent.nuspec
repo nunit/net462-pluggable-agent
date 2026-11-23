@@ -7,20 +7,20 @@
     <title>NUnit Extension - Net 4.6.2 Pluggable Agent</title>
     <authors>Charlie Poole</authors>
     <owners>Charlie Poole</owners>
-    <copyright>Copyright (c) 2021-2025 Charlie Poole</copyright>
+    <copyright>Copyright (c) 2021-2026 Charlie Poole</copyright>
     <projectUrl>http://nunit.org</projectUrl>
 	<licenseUrl>https://raw.githubusercontent.com/nunit/net462-pluggable-agent/master/LICENSE.txt</licenseUrl>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<iconUrl>https://cdn.rawgit.com/nunit/resources/master/images/icon/nunit_256.png</iconUrl>
 	<language>en-US</language>
-    <projectSourceUrl>https://github.com/NUnit/net462-pluggable-agent</projectSourceUrl>
-    <packageSourceUrl>https://github.com/NUnit/net462-pluggable-agent</packageSourceUrl>
-    <docsUrl>https://test-centric.org</docsUrl>
+    <projectSourceUrl>https://github.com/nunit/net462-pluggable-agent</projectSourceUrl>
+    <packageSourceUrl>https://github.com/nunit/net462-pluggable-agent</packageSourceUrl>
+    <docsUrl>https://nunit.org</docsUrl>
     <mailingListUrl>https://groups.google.com/forum/#!forum/nunit-discuss</mailingListUrl>
-    <bugTrackerUrl>https://github.com/NUnit/net462-pluggable-agent/issues</bugTrackerUrl>
+    <bugTrackerUrl>https://github.com/nunit/net462-pluggable-agent/issues</bugTrackerUrl>
     <tags>nunit extension pluggable agent net462</tags>
-    <summary>NUnit Engine extension for running tests under .NET 4.6.2</summary>
-    <description>This extension allow the NUnit engine to run tests under .NET 4.6.2.</description>
+    <summary>NUnit Engine extension for running tests under .NET 4.6.2.</summary>
+    <description>This extension allows the NUnit engine to run tests under .NET 4.6.2.</description>
   </metadata>
   <files>
     <file src="../LICENSE.txt" target="tools" />

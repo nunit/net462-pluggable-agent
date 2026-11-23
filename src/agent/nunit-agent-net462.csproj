@@ -10,6 +10,7 @@
         <GenerateSupportedRuntime>false</GenerateSupportedRuntime>
 	    <SignAssembly>true</SignAssembly>
 	    <AssemblyOriginatorKeyFile>..\nunit.snk</AssemblyOriginatorKeyFile>
+		<Nullable>Enable</Nullable>
     </PropertyGroup>
 
     <PropertyGroup>

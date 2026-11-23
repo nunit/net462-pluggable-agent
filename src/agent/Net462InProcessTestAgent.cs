@@ -32,7 +32,7 @@ namespace NUnit.Engine.Agents
         {
         }
 
-        private static Assembly ResolveAgentCore(object sender, ResolveEventArgs args)
+        private static Assembly? ResolveAgentCore(object? sender, ResolveEventArgs args)
         {
             return AssemblyName.ReferenceMatchesDefinition(new AssemblyName(args.Name), AGENT_CORE.GetName())
                 ? AGENT_CORE
