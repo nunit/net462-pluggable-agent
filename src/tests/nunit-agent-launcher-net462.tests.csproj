@@ -16,6 +16,11 @@
 		<ProjectReference Include="..\launcher\nunit-agent-launcher-net462.csproj" />
 	</ItemGroup>
 
+	<!-- The agent itself targets net462 only; its in-process class is tested there. -->
+	<ItemGroup Condition="'$(TargetFramework)'=='net462'">
+		<ProjectReference Include="..\agent\nunit-agent-net462.csproj" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="NUnit" />
 		<PackageReference Include="NUnitLite" />

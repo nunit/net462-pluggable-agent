@@ -25,6 +25,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <!-- In-process agents run in the runner's own process, so only the AnyCPU agent provides one.
+             A copy here would be a second extension for the same runtime. -->
+        <Compile Remove="Net462InProcessTestAgent.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="NUnit.Agent.Core" />
         <PackageReference Include="NUnit.Engine.Api" />
     </ItemGroup>
