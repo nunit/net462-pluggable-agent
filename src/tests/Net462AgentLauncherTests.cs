@@ -192,7 +192,7 @@ namespace NUnit.Engine.Agents
             Assert.That(startInfo.WorkingDirectory, Is.EqualTo(Environment.CurrentDirectory));
 
             var arguments = startInfo.Arguments;
-            Assert.That(arguments, Does.Contain("--trace="));
+            Assert.That(arguments, Does.Contain("--trace=Warning"));
             Assert.That(arguments, Does.Not.Contain("--debug-agent"));
             Assert.That(arguments, Does.Not.Contain("--work="));
         }
